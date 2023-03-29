@@ -19,6 +19,7 @@ import Services from "../Layout/Services";
 import FilterProduct from "./FilterProduct";
 import FlashCard from "./FlashCard";
 import Meta from "../Layout/Meta";
+import ShoppingCard from "./ShippingCard";
 
 function Products() {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function Products() {
         {!keyword && (
           <FilterProduct title="Featured Products" category="Accessoires" />
         )}
+        {!keyword && <Delivery></Delivery>}
         {!keyword && <h2 className={classes.header}> All Products </h2>}
         {loading ? (
           <Loader />
@@ -77,7 +79,7 @@ function Products() {
           page={page}
           keyword={keyword ? keyword : ""}
         />
-        {!keyword && <Delivery></Delivery>}
+        {!keyword && <ShoppingCard />}
       </div>
     </div>
   );
