@@ -1,6 +1,7 @@
 const PageNotFound404 = (req, res, next) => {
+  const error = res.send("Not Found" + res.originalUrl);
   res.status(404);
-  next(404);
+  next(error);
 };
 
 // ERROR MIDLWARE

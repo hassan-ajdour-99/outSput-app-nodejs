@@ -1,7 +1,6 @@
 .container {
   max-width: 75rem;
   margin: auto;
-  margin-top: -7rem;
 }
 
 .header1 {
@@ -76,7 +75,8 @@ h2 span {
     max-width: 75rem;
     margin: auto;
     padding: 0.5rem;
-    margin-top: -17rem;
+    padding-top: 0rem;
+    margin-top: -16rem;
   }
   .cards {
     display: grid;
@@ -86,15 +86,13 @@ h2 span {
   }
 
   .header {
-    margin-top: 20rem;
+    margin-top: 4rem;
   }
 
   h2 span {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
     color: rgb(82, 13, 186);
     font-size: 20px;
   }

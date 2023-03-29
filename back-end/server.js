@@ -9,6 +9,7 @@ import productRoute from "./routes/productRoute.js";
 import userRoute from "./routes/userRoute.js";
 import orderRoute from "./routes/orderRoute.js";
 import uploadRoute from "./routes/uploadRoute.js";
+import uploadImageRoute from "./routes/uploadImageRoute.js";
 
 dotenv.config();
 
@@ -34,6 +35,9 @@ app.use("/api/orders", orderRoute);
 
 // Image Upload Route
 app.use("/api/upload", uploadRoute);
+
+// image upload to cloudinay
+app.use("/api/uploading", uploadImageRoute);
 
 // Payment Paypal
 app.get("/api/config/paypal", (req, res) =>

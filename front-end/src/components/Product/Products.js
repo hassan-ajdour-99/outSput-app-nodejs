@@ -57,8 +57,8 @@ function Products() {
         )}
         {!keyword && (
           <FilterProduct title="Featured Products" category="Accessoires" />
-        )} 
-      {!keyword && <h2 className={classes.header}> All Products </h2> }
+        )}
+        {!keyword && <h2 className={classes.header}> All Products </h2>}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -77,10 +77,7 @@ function Products() {
           page={page}
           keyword={keyword ? keyword : ""}
         />
-      {!keyword && <Delivery></Delivery>}
-      {!keyword && (
-          <FlashCard title="Accessoires Products" cat="Accessoires" />
-        )} 
+        {!keyword && <Delivery></Delivery>}
       </div>
     </div>
   );

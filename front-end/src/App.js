@@ -20,6 +20,7 @@ import AppBar from "./components/Layout/AppBar";
 import ChangePassword from "./components/User/ChangePassword";
 import Order from "./components/Order/orders.js";
 import Success from "./components/Order/Success";
+import ImageUploadForm from "./components/Product/ImageUploadForm";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/upload" element={<ImageUploadForm />} />
       </Routes>
       <Footer />
     </Router>

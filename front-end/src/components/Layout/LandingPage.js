@@ -19,13 +19,14 @@ function LandingPage() {
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
-        {/* <div className={classes.imageSide}>
-          <img src="/images/shoe-3.png" alt="" />
-        </div> */}
-        <h2> Amazing Shoe With Amazing price and Quality .</h2>
-        <p>lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem .</p>
-        <button> See What We Have </button>
+        <div className={classes.content}>
+          <h2> Amazing Shoe With Amazing price and Quality .</h2>
+          <p>
+            lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem .
+          </p>
+          <button> See What We Have </button>
         </div>
+      </div>
     </div>
   );
 }

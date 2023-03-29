@@ -1,5 +1,5 @@
 .container {
-  max-width : 1500px;
+  max-width: 1500px;
   background-color: #222;
 }
 
@@ -8,44 +8,62 @@
   background-color: #222;
   opacity: 0.6;
   display: flex;
-  flex-direction : column;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 550px;
 }
 
 .wrapper h2 {
-  color : #fff;
+  color: #fff;
 }
 
 .wrapper p {
-  color : #fff;
+  color: #fff;
 }
 
 .wrapper button {
-  color : rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
   background-color: #de7804;
   border-radius: 8px;
-  border : none;
-  padding : 15px;
-  font-size : 18px;
+  border: none;
+  padding: 15px;
+  font-size: 18px;
 }
 
 .imageSide img {
-  width : 60%;
+  width: 60%;
 }
 
 @media (max-width: 500px) {
   .container {
-    margin: 1.5rem;
+    max-width: 1500px;
+    background-color: #0e3b6f;
   }
+
   .wrapper {
-    max-width: 900px;
+    background-color: #0e3b6f;
+  }
+
+  .wrapper {
+    background-image: url("../../../public/images/shoe-4.png");
+    background-color: #222;
+    opacity: 0.6;
     display: flex;
     flex-direction: column;
-    color: #fff;
-    height: 900px;
-    gap: 0rem;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+  }
+
+  .content {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.3rem;
   }
 
   .imageSide img {
