@@ -5,7 +5,11 @@ import { useNavigate, Link } from "react-router-dom";
 import Loader from "../Layout/loader";
 import Message from "../Layout/message";
 import classes from "./OrderList.module.css";
-import { getOrdersListAction, deleteOrderAction,  orderDeliveryAction } from "../Actions/orderAction";
+import {
+  getOrdersListAction,
+  deleteOrderAction,
+  orderDeliveryAction,
+} from "../Actions/orderAction";
 import Meta from "../Layout/Meta";
 
 function OrderList() {
@@ -27,7 +31,7 @@ function OrderList() {
   const { userInfo } = userLogin;
 
   const orderDetail = useSelector((state) => state.orderDetails);
-  const { loading: orderLoading,  order } = orderDetail;
+  const { loading: orderLoading, order } = orderDetail;
 
   useEffect(() => {
     if (!userInfo || !userInfo.isAdmin) {
@@ -50,8 +54,8 @@ function OrderList() {
   // Order deliver successfully .
   const orderIsDeliveredSuccessfuly = () => {
     dispatch(orderDeliveryAction(order));
-    console.log('order delivered successfully');
-  }
+    console.log("order delivered successfully");
+  };
 
   return (
     <div className={classes.container}>

@@ -37,7 +37,7 @@ function Order() {
   const { loading: loadingPay, success: successPay } = orderDetail;
 
   const orderDeliver = useSelector((state) => state.orderToDeliver);
-  const { success: successDeliver } = orderDeliver;
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
   useEffect(() => {
     const AddPaypalScript = async () => {
@@ -55,6 +55,8 @@ function Order() {
 
     if (!order || successPay) {
       dispatch(getOrderDetail(id));
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: RESET_CART_ITEM });
     } else if (!order.isPaid) {
       if (!window.paypal) {
         AddPaypalScript();
@@ -77,13 +79,15 @@ function Order() {
   }
 
   // orderdDeliveryControlHandler
-  const orderdDeliveryControlHandler = () => {
-    dispatch(orderDeliveryAction(order));
-    dispatch({ type: ORDER_DELIVER_RESET });
-    console.log("Order delivery Successfully!");
-  };
+  // const orderdDeliveryControlHandler = () => {
+  //   dispatch(orderDeliveryAction(order));
+  //   dispatch({ type: ORDER_DELIVER_RESET });
+  //   console.log("Order delivery Successfully!");
+  // };
 
-  return loading || successPay || successDeliver ? (
+  return loadingPay ? (
+    <Loader />
+  ) : loading ? (
     <Loader />
   ) : error ? (
     <Message message={error} />
@@ -111,36 +115,18 @@ function Order() {
           </p>
           <h2> Total Amount : </h2>
           <p> {order.totalPrice} DH </p>
-          <h2> ORDER PAYMENT STATUS : </h2>
+          <h4> ORDER PAYMENT STATUS : </h4>
           {order.isPaid && (
             <button className={classes.btn1}> Order is Paid </button>
           )}
           {!order.isPaid && (
             <button className={classes.btn}> Order Not Paid </button>
           )}
-          <h3> ORDER Delivery STATUS : </h3>
+          <h4> ORDER Delivery STATUS : </h4>
           {!order.isDelivered && (
             <p className={classes.deliver}>
-              {" "}
-              Please check the order if It is deliovered , by Click on Check
-              Order Delivery button{" "}
+              we are working to process and ship your order!
             </p>
-          )}
-          {successDeliver && <Loader></Loader>}
-          {!order.isDelivered && (
-            <button
-              className={classes.checkButton}
-              onClick={orderdDeliveryControlHandler}
-            >
-              {" "}
-              Check Order Delivery{" "}
-            </button>
-          )}
-          {order.isDelivered && (
-            <button className={classes.btn1}> Order is Delivered </button>
-          )}
-          {!order.isDelivered && (
-            <button className={classes.btn}> Order Not Delivered </button>
           )}
           <h3> SHOPPING ITEMS </h3>
           <div className={classes.items}>
@@ -159,39 +145,38 @@ function Order() {
             ))}
           </div>
         </div>
-        <div className={classes.card2}>
-          <h2 className={classes.orderSummary}> ORDER SUMMARY </h2>
-          <p className={classes.amount}>
-            {" "}
-            Total Amount :{" "}
-            <span classsName={classes.totalAmount}>${order.totalPrice}</span>
-          </p>
-          <p className={classes.amount}>
-            {" "}
-            Shipping Price : 0$ - free sgippping{" "}
-          </p>
-          <p className={classes.amount}> Tax : 0$ </p>
-          <p className={classes.amount}>
-            {" "}
-            Amount To Pay :{" "}
-            <span classsName={classes.totalAmount}>${order.totalPrice}</span>
-          </p>
-          {!order.isPaid ? (
-            <div className={classes.pay}>
-              {loadingPay && <Loader></Loader>}
-              {!sdkIsReady ? (
-                <Loader />
-              ) : (
-                <PayPalButton
-                  amount={order.totalPrice}
-                  onSuccess={onSuccessPaymentHanlder}
-                />
-              )}
-            </div>
-          ) : (
-            <p className={classes.paid}> Order Paid Successfully! </p>
-          )}
-        </div>
+        {!order.isPaid && (
+          <div className={classes.card2}>
+            <h2 className={classes.orderSummary}> ORDER SUMMARY </h2>
+            <p className={classes.amount}>
+              Total Amount :
+              <span classsName={classes.totalAmount}>${order.totalPrice}</span>
+            </p>
+            <p className={classes.amount}>
+              Shipping Price : 0$ - free sgippping
+            </p>
+            <p className={classes.amount}> Tax : 0$ </p>
+            <p className={classes.amount}>
+              Amount To Pay :
+              <span classsName={classes.totalAmount}>${order.totalPrice}</span>
+            </p>
+            {!order.isPaid ? (
+              <div className={classes.pay}>
+                {loadingPay && <Loader></Loader>}
+                {!sdkIsReady ? (
+                  <Loader />
+                ) : (
+                  <PayPalButton
+                    amount={order.totalPrice}
+                    onSuccess={onSuccessPaymentHanlder}
+                  />
+                )}
+              </div>
+            ) : (
+              <p className={classes.paid}> Order Paid Successfully! </p>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
